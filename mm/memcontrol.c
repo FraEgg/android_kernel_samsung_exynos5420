@@ -1011,10 +1011,6 @@ void mem_cgroup_iter_break(struct mem_cgroup *root,
 	     iter != NULL;				\
 	     iter = mem_cgroup_iter(NULL, iter, NULL))
 
-static inline bool mem_cgroup_is_root(struct mem_cgroup *memcg)
-{
-	return (memcg == root_mem_cgroup);
-}
 
 void mem_cgroup_count_vm_event(struct mm_struct *mm, enum vm_event_item idx)
 {
@@ -2887,6 +2883,7 @@ int mem_cgroup_cache_charge(struct page *page, struct mm_struct *mm,
 	}
 	return ret;
 }
+
 
 /*
  * While swap-in, try_charge -> commit or cancel, the page is locked.
