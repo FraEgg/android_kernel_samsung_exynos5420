@@ -40,10 +40,6 @@ extern void error(char *);
 #include "../../../../lib/decompress_unlzo.c"
 #endif
 
-#ifdef CONFIG_KERNEL_LZ4
-#include "../../../../lib/decompress_unlz4.c"
-#endif
-
 #ifdef CONFIG_KERNEL_LZMA
 #include "../../../../lib/decompress_unlzma.c"
 #endif
