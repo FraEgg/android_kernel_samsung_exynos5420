@@ -398,6 +398,11 @@ enum charge_type {
 static void mem_cgroup_get(struct mem_cgroup *memcg);
 static void mem_cgroup_put(struct mem_cgroup *memcg);
 
+static inline
+struct mem_cgroup *mem_cgroup_from_css(struct cgroup_subsys_state *s)
+{
+	return container_of(s, struct mem_cgroup, css);
+}
 /* Some nice accessors for the vmpressure. */
 struct vmpressure *memcg_to_vmpressure(struct mem_cgroup *memcg)
 {
@@ -413,8 +418,12 @@ struct cgroup_subsys_state *vmpressure_to_css(struct vmpressure *vmpr)
 
 struct vmpressure *css_to_vmpressure(struct cgroup_subsys_state *css)
 {
-	struct mem_cgroup *memcg = container_of(css, struct mem_cgroup, css);
-	return &memcg->vmpressure;
+	return &mem_cgroup_from_css(css)->vmpressure;
+}
+
+static inline bool mem_cgroup_is_root(struct mem_cgroup *memcg)
+{
+	return (memcg == root_mem_cgroup);
 }
 
 /* Writing them here to avoid exposing memcg's inner layout */
@@ -422,7 +431,8 @@ struct vmpressure *css_to_vmpressure(struct cgroup_subsys_state *css)
 #include <net/sock.h>
 #include <net/ip.h>
 
-static bool mem_cgroup_is_root(struct mem_cgroup *memcg);
+
+
 void sock_update_memcg(struct sock *sk)
 {
 	if (mem_cgroup_sockets_enabled) {
