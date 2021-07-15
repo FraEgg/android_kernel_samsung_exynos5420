@@ -44,7 +44,7 @@ extern struct kbase_device *pkbdev;
 static gpu_dvfs_info gpu_dvfs_table_default[] = {
 // #if !defined(CONFIG_ARM_EXYNOS_MP_CPUFREQ)
 	{600, 1050000, 0, 98, 100, 1, 0, 800000, 400000,  1400000, 1300000},
-	{533, 1037500, 0, 98,  100, 1, 0, 800000, 400000, 1400000, 1300000},
+	{533, 1037500, 0, 98, 100, 1, 0, 800000, 400000,  1400000, 1300000},
 	{480, 1000000, 0, 98,  99, 1, 0, 800000, 400000,  1400000, 1500000},
 	{420,  962500, 0, 98,  99, 1, 0, 800000, 400000,  1400000, 1500000},
 	{350,  912500, 0, 80,  99, 1, 0, 667000, 333000,  1400000, 1500000},
@@ -83,7 +83,7 @@ static int mif_min_table[] = {
 //static int available_max_clock[] = {GPU_L2, GPU_L2, GPU_L0, GPU_L0, GPU_L0};
 
 static gpu_attribute gpu_config_attributes[] = {
-	{GPU_MAX_CLOCK, 533},
+	{GPU_MAX_CLOCK, 600},
 	{GPU_MAX_CLOCK_LIMIT, 533},
 	{GPU_MIN_CLOCK, 266},
 	{GPU_DVFS_START_CLOCK, 266},
