@@ -250,6 +250,7 @@ static void vmpressure_work_fn(struct work_struct *work)
 	} while ((vmpr = vmpressure_parent(vmpr)));
 }
 
+#ifdef CONFIG_MEMCG
 void vmpressure_memcg(gfp_t gfp, struct mem_cgroup *memcg,
 		unsigned long scanned, unsigned long reclaimed)
 {
@@ -384,6 +385,8 @@ void vmpressure_prio(gfp_t gfp, struct mem_cgroup *memcg, int prio)
 	 */
 	vmpressure(gfp, memcg, vmpressure_win, 0);
 }
+#else
+#endif /* CONFIG_MEMCG */
 
 /**
  * vmpressure_register_event() - Bind vmpressure notifications to an eventfd
